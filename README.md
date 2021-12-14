@@ -3,7 +3,7 @@ a little rudimentry DB
 
 Switch Data entry / data querry with "esc" <br>
 You start with data querry.<br>
-After switching to querry predd return first. ewnter the data like
+After switching to querry press return first. enter the data like
  > nils 0190222222
 
 and press enter again.<br>
