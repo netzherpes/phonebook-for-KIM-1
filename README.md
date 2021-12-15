@@ -13,13 +13,13 @@ The interesting part is the search function, where you can querry a phrase, a na
 Switch Data entry / data querry with "esc" <br>
 You start with data querry. and a question mark.<br>
 
-After switching to data entry you can write whatever you wanf, up to 255 chars. End your line with (ENTER). **Important: Start your very first enrty with an (Enter), too!**<br>
+After switching to data entry you can write whatever you want, up to 255 chars. End your line with (ENTER). **Important: Start your very first enrty with an (Enter), too!**<br>
 
  > nils 0190222222
 
 
 after you are finished, press esc to search for entries.
 
-To save yout Text, look at 
+To save yout Text, look at (no idea yet)
 
 more l8r
