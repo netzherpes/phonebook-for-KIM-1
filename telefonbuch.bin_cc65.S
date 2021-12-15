@@ -1,7 +1,7 @@
 ; Target assembler: cc65 v2.18.0 [--target none -C telefonbuch.bin_cc65.cfg]
 ;*****************************
 ;* Telefonbuch               *
-;* (c) 1979                  *
+;* (c) 1978                  *
 ;* Herwig Feichtinger        *
 ;*****************************
          .setcpu "6502"
