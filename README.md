@@ -24,7 +24,7 @@ The Program starts in data query mode and a question mark. Enter a searchphrase 
 After switching to data entry you can write whatever you want, up to 255 characters. Normally (in a phonebook) something like
  > nils 0190222222
 
-End your line with (ENTER). **Important: Start your very first enrty with an (Enter), too!**<br>
+End your line with (ENTER). **Important: Start your very first entry with an (Enter), too!**<br>
 Ater you are finished, press (ESC)  to get back to search for entries. 
 
 ## Memory of Data
