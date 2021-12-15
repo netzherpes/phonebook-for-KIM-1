@@ -27,14 +27,14 @@ after you are finished, press esc to search for entries.
 ## Memory of Data
 The single entries are identified by the $0d at the start and the end. Eberything in between this borders counts ad one line.<br>
 The memory should look like the following 
-|Location|Content|
-|-|-|
-|$2000|#$00|
-|$2001|#$0d|
-|$2002-$2010|some text|
-|$2011|#$0d|
-|$2012|#$00|
+|Location|Content|Why?|
+|-|-|-|
+|$2000|#$00|start|
+|$2001|#$0d|begin of an entry|
+|$2002-$2010|some text||
+|$2011|#$0d|end and start new entry|
+|$2012|#$00|important, as the program searches the first free $00 for the next entry|
 
-To save yout Text, look at (no idea yet)
+To save your data, dave from $2000 to the first $00 after $2000 ... will write a sub for this l8r
 
-more l8r
+webdoktor
