@@ -17,15 +17,15 @@ original version: Load $00, Start $77, Data at $0200<br>
 improved version: Load $0200, Start $0200, Data at $2000
 
 ## Usage 
-Switch Data entry / data querry with "esc" <br>
-You start with data querry. and a question mark.<br>
-The first letter after the (ESC) is sadly not echoed. Still investigating. Stoopid KIM. But it's there ;) 
+Switch Data entry / data query with (ESC) <br>
+The Program starts in data query mode and a question mark. Enter a searchphrase or press (ENTER) to show all entries.<br>
+*The first letter after the (ESC) is sadly not echoed. Still investigating. Stoopid KIM. But it's there ;)*
 
-After switching to data entry you can write whatever you want, up to 255 chars. End your line with (ENTER). **Important: Start your very first enrty with an (Enter), too!**<br>
-
+After switching to data entry you can write whatever you want, up to 255 characters. Normally (in a phonebook) something like
  > nils 0190222222
 
-after you are finished, press esc to search for entries.
+End your line with (ENTER). **Important: Start your very first enrty with an (Enter), too!**<br>
+Ater you are finished, press (ESC)  to get back to search for entries. 
 
 ## Memory of Data
 The single entries are identified by the $0d at the start and the end. Eberything in between this borders counts ad one line.<br>
