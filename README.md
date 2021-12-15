@@ -35,6 +35,6 @@ The memory should look like the following
 |$2011|#$0d|end and start new entry|
 |$2012|#$00|important, as the program searches the first free $00 for the next entry|
 
-To save your data, dave from $2000 to the first $00 after $2000 ... will write a sub for this l8r
+To save your data, save from $2000 to the first $00 after $2000 ... will write a sub for this l8r
 
 webdoktor
