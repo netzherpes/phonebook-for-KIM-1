@@ -7,11 +7,14 @@ a phonebook ... silly, but it's there
 
 ![phonebook](https://github.com/netzherpes/phonebook-for-KIM-1/raw/main/phonebook..png)
 
-It simply saved lines of text from 0200 or 2000 on, depending on the version. The original Version (start $0077) has some nasty errors though. I tried to fix some things in the improved version (start $0200)<br>
+It simply saved lines of text from 0200 or 2000 on, depending on the version. <br>
 The interesting part is the search function, where you can querry a phrase, a name, a number and the program will spit out the line of text containing this phrase.
 
 ## Versions
 The small (original) version is, well, not usable anymore, as I cannot send a NUL on modern terminals. So I came up with a workaround, that adds a #$00 after the last entry, changed the memory layout, added some text in the beginning. Nothing thrilling, but for me a huge step in the learning curve.
+
+original version: Load $00, Start $77<br>
+improved version: Load $0200, Start $0200
 
 ## Usage 
 Switch Data entry / data querry with "esc" <br>
