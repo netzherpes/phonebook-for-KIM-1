@@ -3,7 +3,7 @@ Found in Hobbycomputer #1
 (c) 1980 Herwig Feichtinger 
 improved by Nils Andreas 
 
-a little rudimentry DB 
+a phonebook ... silly, but it's there
 
 ![phonebook](https://github.com/netzherpes/phonebook-for-KIM-1/raw/main/phonebook..png)
 
