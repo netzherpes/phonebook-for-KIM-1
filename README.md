@@ -7,7 +7,8 @@ a little rudimentry DB
 
 ![phonebook](https://github.com/netzherpes/phonebook-for-KIM-1/raw/main/phonebook..png)
 
-It simply saved lines of text from 0200 or 2000 on. The interesting part is the search function, where you can querry a phrase, a name, a number and the program will spit out the line of text containing this phrase. The first letter is sadly not written. Still investigating. But it's there ;) 
+It simply saved lines of text from 0200 or 2000 on, depending on the version. The original Version (start $0077) has some nasty errors though. I tried to fix some things in the imroved version (start $0200)<br>
+The interesting part is the search function, where you can querry a phrase, a name, a number and the program will spit out the line of text containing this phrase. The first letter is sadly not written. Still investigating. But it's there ;) 
 
 Switch Data entry / data querry with "esc" <br>
 You start with data querry. and a question mark.<br>
