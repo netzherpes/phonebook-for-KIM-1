@@ -28,7 +28,7 @@ End your line with (ENTER). **Important: Start your very first enrty with an (En
 Ater you are finished, press (ESC)  to get back to search for entries. 
 
 ## Memory of Data
-The single entries are identified by the $0d at the start and the end. Eberything in between this borders counts ad one line.<br>
+The single entries are identified by the $0d at the start and the end. Everything in between this borders counts as one line.<br>
 The memory should look like the following 
 |Location|Content|Why?|
 |-|-|-|
