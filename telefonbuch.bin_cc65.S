@@ -1,88 +1,110 @@
-; Target assembler: cc65 v2.18.0 [--target none -C telefonbuch.bin_cc65.cfg]
+; Target assembler: TASM 
 ;*****************************
 ;* Telefonbuch               *
-;* (c) 1978                  *
+;* (c) 1979                  *
 ;* Herwig Feichtinger        *
 ;*****************************
-         .setcpu "6502"
-ret      =       $0d
-esc      =       $1b
-
-CR       =       $1e2f
-getch    =       $1e5a
-space    =       $1e9e
-OUTCH    =       $1ea0
-INCPT    =       $1f63
-
+; typed in and checked by Nils Andreas
+; comments entered from German listing into source
+; checked for being binary compatible with original listing in HobbyComputer 1 1979
+;
+; Note that getch in KIM-1 returns with Y = $FF, used in this program to save two bytes?
+; Testcase for the KIM-1 Simulator, which now emulates this getch behaviour
+;
+; Hans Otten, 15 december 2021
+; 
+CR     =       $0d             ; carriage return
+esc     =       $1b             ; escape
+ 
+crlf    =       $1e2f           ; KIM-1 print cr 
+getch   =       $1e5a           ; KIM-1 read char for tty
+space   =       $1e9e           ; KIM-1 print space tty
+outch   =       $1ea0           ; KIM-1 print car on tty
+incpt   =       $1f63           ; increment pointer
+;
+; zeropage
+;
+savy    = $f9
+tablep  = $fa                   ; pointer into table 
+bufferp = $df                   ; buffer
+table   = $0200                 ; table starts here
+;
          .org    $0000
-start:   lda     #$00
-         sta     $fa
-         lda     #$02       ;Page for Databasestart
-         sta     $fb        ;save pointer start
-         ldx     #$17
+;
+start:   lda     #(table & $ff) ; low byte table address
+         sta     tablep
+         lda     #(table >> 8)  ; high byte table address 
+         sta     tablep + 1     ; 
+         ldx     #$17           ; 17 bytes clear
          lda     #$00
-Buffer:  sta     $df,x
+buffer:  sta     bufferp,x      ; clear buffer
          dex
-         bne     Buffer
-read:    jsr     getch
-         cmp     #$1b
-         bne     chkend
-         iny
-chkfre:  jsr     INCPT
-         lda     ($fa),y
-         bne     chkfre
-input:   jsr     getch
-         iny
-         cmp     #esc
-         beq     start
-         sta     ($fa),y
-         jsr     INCPT
-         jmp     input
-
-chkend:  cmp     #ret
-         beq     zzz
-         sta     $e0,x
-         inx
-         cpx     #$15
-         bne     read
-zzz:     nop
+         bne     buffer
+;         
+read:    jsr     getch          ; get ascii character
+         cmp     #esc           ; escape? 
+         bne     chkend         ; no
+         iny                    ; yes, y = 0
+chkfre:  jsr     incpt          ; increment table pointer 
+         lda     (tablep),y     ; query buffer
+         bne     chkfre         ; free space in buffer?
+input:   jsr     getch          ; get ascii character
+         iny                    ; y=0
+         cmp     #esc           ; escape?
+         beq     start          ; yes, back to begin
+         sta     (tablep),y     ; no, store in table
+         jsr     incpt          ; increment table pointer
+         jmp     input          ; and again
+ 
+chkend:  cmp     #CR            ; return?
+         beq     zzz            ; yes, line ready
+         sta     bufferp +1,x   ; no, store char in buffer
+         inx                    ; increment buffer index
+         cpx     #$15           ; is $15?
+         bne     read           ; next character
+;
+zzz:     nop                    
          nop
-newline: jsr     INCPT
-         ldy     #$00
-         lda     ($fa),y
-         beq     printQuest
-         cmp     #ret
-         bne     newline
-found:   ldx     #$00
-compbuf: iny
-         lda     $e0,x
-         beq     printline
-         lda     ($fa),y
-         cmp     #$0d
+;
+newline: jsr     incpt          ; table after return
+         ldy     #$00           ; search for character
+         lda     (tablep),y     ; in table           
+         beq     printquest     ; 
+         cmp     #CR            ; found?
+         bne     newline        ; no, search again
+found:   ldx     #$00           ; yes, compare character in table
+compbuf: iny                    ; with character in buffer
+         lda     bufferp +1,x   ; no, compare table and buffer
+         beq     printline      ; show it
+         lda     (tablep),y
+         cmp     #CR            ; return?
          beq     zzz
-         cmp     $e0,x
+         cmp     bufferp +1,x   ; next character
          bne     found
          inx
          bne     compbuf
+;         
          nop
          nop
+;
 printline:
-         jsr     CR
+         jsr     crlf           ; new line
          ldy     #$01
 loadchar:
-         lda     ($fa),y
-         beq     printQuest
-         cmp     #ret
-         beq     zzz
-         sty     $f9
-         jsr     OUTCH
-         ldy     $f9
-         iny
-         bne     loadchar
-printQuest:
-         jsr     CR
-         lda     #$3f
-         jsr     OUTCH
-         jsr     space
-         jmp     start
-
+         lda     (tablep),y     ; load character from table
+         beq     printquest     ; zero is ready
+         cmp     #CR            ; return?
+         beq     zzz            ; end of table entry
+         sty     savy           ; save Y
+         jsr     outch          ; and print character
+         ldy     savy
+         iny                    ; increment Y, next
+         bne     loadchar       ; load new character
+printquest:
+         jsr     crlf           ; print return
+         lda     #'?'           ; print ?
+         jsr     outch          ; 
+         jsr     space          ; print space
+         jmp     start          ; return
+;
+        .end
