@@ -25,7 +25,7 @@ After switching to data entry you can write whatever you want, up to 255 charact
  > nils 0190222222
 
 End your line with (ENTER). **Important: Start your very first entry with an (Enter), too!**<br>
-Ater you are finished, press (ESC)  to get back to search for entries. 
+After you are finished, press (ESC)  to get back to search for entries. 
 
 ## Memory of Data
 The single entries are identified by the $0d at the start and the end. Everything in between this borders counts as one line.<br>
