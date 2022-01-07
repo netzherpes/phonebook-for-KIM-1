@@ -11,7 +11,7 @@ It simply saved lines of text from 0200 or 2000 on, depending on the version. <b
 The interesting part is the search function, where you can querry a phrase, a name, a number and the program will spit out the line of text containing this phrase.
 
 ## Versions
-The small (original) version is unusable meanwhile, as I cannot send a NUL on modern terminals (or at least I did not figure out how :D ). So I came up with a workaround, that adds a #$00 after the last entry, changed the memory layout, added some text in the beginning. Nothing thrilling, but for me a huge step in the learning curve.
+The small (original) version is unusable meanwhile, as I cannot send a NUL on modern terminals (or at least I did not figure out how :D **I figured out: alt+256 under windows** ). So I came up with a workaround, that adds a #$00 after the last entry, changed the memory layout, added some text in the beginning. Nothing thrilling, but for me a huge step in the learning curve.
 
 original version: Load $00, Start $77, Data at $0200<br>
 improved version: Load $0200, Start $0200, Data at $2000
